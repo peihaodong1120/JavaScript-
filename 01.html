@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // 构造函数Person
+    function Person() {
+      this.age = 20
+    }
+    // 在原型上添加属性
+    Person.prototype.name = "张三"
+    // 实例对象
+    let peopleOne = new Person()
+    // 可以获取到原型上的属性
+    console.log(peopleOne.name,peopleOne.age); // 张三， 20
+    // 构造函数的prototype指向的就是实例的__proto__ 也就是原型
+    console.log(Person.prototype  === peopleOne.__proto__);  // true
+    peopleOne.__proto__.__proto__.name = '王五'
+    // 原型的原型 与Object.prototype为同一原型
+    console.log(peopleOne.__proto__.__proto__ === Object.prototype);
+
+    let people = new Object()
+    console.log(people.name);
+    console.log(people.__proto__ === peopleOne.__proto__.__proto__);
+    console.log(Object.prototype.__proto__)
+
+    console.log('----------------------------------------------');
+
+    // 万物皆对象，构造函数也是对象。所以Object的__proto__指向的是Function的原型Function.prototype
+    console.log(Object.__proto__);
+    console.log(Function.prototype === Object.__proto__);
+    // Function.prototype的原型又指到Object实例的原型上
+    console.log(Function.prototype.__proto__ === Object.prototype);
+    
+  </script>
+</body>
+</html>
